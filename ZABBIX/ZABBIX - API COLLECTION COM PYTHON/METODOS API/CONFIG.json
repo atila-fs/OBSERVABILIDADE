@@ -1,0 +1,5 @@
+{
+  "username": "zabbix_api",
+  "password": "<senha>",
+  "url": "http://[IP_ADDRESS]/zabbix/api_jsonrpc.php"
+}

@@ -1,0 +1,12 @@
+[Unit]
+Description=PSC Dynatrace Dashboard
+After=network.target
+
+[Service]
+WorkingDirectory=/opt/scripts/dynatrace/status-page
+ExecStart=/opt/scripts/dynatrace/status-page/.venv/bin/python /opt/scripts/dynatrace/status-page/app.py
+Restart=always
+User=root
+
+[Install]
+WantedBy=multi-user.target
