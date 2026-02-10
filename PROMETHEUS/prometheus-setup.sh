@@ -1,4 +1,6 @@
 #!/bin/bash
+mkdir -p /opt/observability
+cd /opt/observability
 wget https://github.com/prometheus/prometheus/releases/download/v3.9.1/prometheus-3.9.1.linux-amd64.tar.gz
 groupadd --system prometheus
 useradd -s /sbin/nologin --system -g prometheus prometheus
@@ -6,7 +8,6 @@ mkdir /var/lib/prometheus
 mkdir -p /etc/prometheus/rules
 mkdir -p /etc/prometheus/rules.s
 mkdir -p /etc/prometheus/files_sd
-cd /opt/observability
 tar xvf prometheus-3.9.1.linux-amd64.tar.gz
 cd  prometheus-3.9.1.linux-amd64
 mv prometheus promtool /usr/local/bin/
