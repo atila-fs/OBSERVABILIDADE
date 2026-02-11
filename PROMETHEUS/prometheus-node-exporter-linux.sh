@@ -1,6 +1,8 @@
 #!/bin/bash
 mkdir -p /opt/observability
 cd /opt/observability
+groupadd --system prometheus
+useradd -s /sbin/nologin --system -g prometheus prometheus
 wget https://github.com/prometheus/node_exporter/releases/download/v1.10.2/node_exporter-1.10.2.linux-amd64.tar.gz
 tar xvf node_exporter-1.10.2.linux-amd64.tar.gz
 cd  node_exporter-1.10.2.linux-amd64
@@ -26,6 +28,10 @@ Restart=always
 [Install]
 WantedBy=multi-user.target
 EOF
+chown -R prometheus:prometheus /var/lib/node
+chown -R prometheus:prometheus /var/lib/node/*
+chmod -R 775 /var/lib/node
+chmod -R 775 /var/lib/node/*
 systemctl daemon-reload
 systemctl enable exporter
 systemctl start exporter
